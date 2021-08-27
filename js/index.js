@@ -3,7 +3,7 @@ function init(){
   const gridRow = 7
   const gridCol = 6
   const gridCount = gridRow * gridCol
-  const gridItems = document.querySelectorAll('.grid-item')
+  let gridItems
 
   
   
@@ -13,20 +13,20 @@ function init(){
       div.setAttribute('data-id', i)
       div.classList.add('grid-item')
       grid.appendChild(div)
+      gridItems = document.querySelectorAll('.grid-item')
       
     }
     
   }
   
-
+  makeGrid()
+  
   function clickHandle(event){
-    event.target.style.backgroundColor = 'black' // not working
+    event.target.style.backgroundColor = 'black' 
 
   }
-  gridItems.forEach(gridItem => gridItem.addEventListener('click', clickHandle))
-  console.log(gridItems) // not working
-
-  makeGrid()
+  gridItems.forEach(gridItem => gridItem.addEventListener('click', clickHandle)) 
+  console.log(gridItems) 
   
 }
 window.addEventListener('DOMContentLoaded', init)
