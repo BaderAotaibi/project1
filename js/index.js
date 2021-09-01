@@ -2,8 +2,8 @@ function init(){
   const grid = document.querySelector('.grid') 
   const player = document.querySelector('.player')
   const currentPlayerDiv  = document.querySelector('.currentPlayer')
-  const col = 7
-  const row = 6
+  const col = 6
+  const row = 7
   const gridCount = col * row
   let currentPlayer = 1 
   player.innerHTML = currentPlayer 
@@ -50,23 +50,27 @@ function init(){
 
   function clickHandle(event){ 
     const id  = parseInt(event.target.dataset.id) 
-    if (!grids[id].classList.contains('taken')){ 
-      if (currentPlayer === 1){ 
-        currentPlayer = 2 
-        player.innerHTML = currentPlayer
-        event.target.classList.add('red', 'taken')
-        player.style.backgroundColor = '#f9c74f'
-        checkWinning() 
-      } else if (currentPlayer === 2){ 
-        currentPlayer = 1 
-        player.innerHTML = currentPlayer 
-        event.target.classList.add('yellow', 'taken')
-        player.style.backgroundColor = '#e63946'
-        checkWinning() 
-      } 
-    } else  {
-      alert('You cannot build on an empty space or on a space that has been built on')
-    } 
+    let bottom = id % col + 36
+    if (currentPlayer === 1){
+      while (grids[bottom].classList.contains('red') || grids[bottom].classList.contains('yellow')){
+        bottom = bottom - col
+      }
+      currentPlayer = 2 
+      player.innerHTML = currentPlayer
+      grids[bottom].classList.add('red', 'taken')
+      player.style.backgroundColor = '#f9c74f'
+      checkWinning() 
+      
+    } else if (currentPlayer === 2){
+      while (grids[bottom].classList.contains('red') || grids[bottom].classList.contains('yellow')){
+        bottom = bottom - col
+      }
+      currentPlayer = 1
+      player.innerHTML = currentPlayer
+      grids[bottom].classList.add('yellow', 'taken')
+      player.style.backgroundColor = '#e63946'
+      checkWinning()  
+    }
   }
   grids.forEach(grid=> grid.addEventListener('click', clickHandle))
 
