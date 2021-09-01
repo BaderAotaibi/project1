@@ -1,6 +1,10 @@
 function init(){ 
   const grid = document.querySelector('.grid') 
   const player = document.querySelector('.player')
+  const currentPlayerDiv  = document.querySelector('.currentPlayer')
+  const col = 7
+  const row = 6
+  const gridCount = col * row
   let currentPlayer = 1 
   player.innerHTML = currentPlayer 
   let grids
@@ -31,7 +35,7 @@ function init(){
   ]
 
   function createGrid(){ 
-    for (let i = 0; i < 49; i++){ 
+    for (let i = 0; i < gridCount; i++){ 
       const div = document.createElement('div') 
       div.setAttribute('data-id', i) 
       div.classList.add('grid-item')
@@ -45,9 +49,8 @@ function init(){
   createGrid() 
 
   function clickHandle(event){ 
-    console.log(event.target)
     const id  = parseInt(event.target.dataset.id) 
-    if ( grids[id + 7].classList.contains('taken') && !grids[id].classList.contains('taken')){ 
+    if (!grids[id].classList.contains('taken')){ 
       if (currentPlayer === 1){ 
         currentPlayer = 2 
         player.innerHTML = currentPlayer
@@ -72,10 +75,16 @@ function init(){
 
       const grid = winningArray[i]
       if (grid.every(q=>grids[q].classList.contains('red'))){
-        alert('player one (red) wins ')
+        currentPlayerDiv.innerHTML = 'The Winner is Player 1 (Red)'
+        currentPlayerDiv.style.backgroundColor = '#e63946'
+        currentPlayerDiv.style.color = 'white'
+
           
       } else if (grid.every(q=>grids[q].classList.contains('yellow'))){
-        alert('player two (yellow) wins')
+        currentPlayerDiv.innerHTML = 'The Winner is Player 2 (Yellow)'
+        currentPlayerDiv.style.backgroundColor = '#f9c74f'
+        currentPlayerDiv.style.color = 'white'
+        currentPlayerDiv.style.width = '210px'
           
       }
     }
