@@ -52,11 +52,13 @@ function init(){
         currentPlayer = 2 
         player.innerHTML = currentPlayer
         event.target.classList.add('red', 'taken')
+        player.style.backgroundColor = '#f9c74f'
         checkWinning() 
       } else if (currentPlayer === 2){ 
         currentPlayer = 1 
         player.innerHTML = currentPlayer 
         event.target.classList.add('yellow', 'taken')
+        player.style.backgroundColor = '#e63946'
         checkWinning() 
       } 
     } else  {

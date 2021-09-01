@@ -34,28 +34,28 @@ body{
   .yellow { 
     background-color: #f9c74f;
   }
- .currentPlayer{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   background-color: white;
-   border-radius: 5px;
-   width: 200px;
-   padding: 5px;
-   margin-bottom: 10px;
- }
- .player{
-   background-color:#e63946;
-   color: white;
-   width: 25px;
-   height: 25px;
-   border-radius: 50%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
+.currentPlayer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  width: 200px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.player{
+  background-color:#e63946;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
- footer{
+footer{
   display: flex;
   flex-direction: column;
   justify-content: center;
