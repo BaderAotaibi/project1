@@ -2,6 +2,7 @@ function init(){
   const grid = document.querySelector('.grid') 
   const player = document.querySelector('.player')
   const currentPlayerDiv  = document.querySelector('.currentPlayer')
+  const body = document.querySelector('body')
   const col = 6
   const row = 7
   const gridCount = col * row
@@ -80,15 +81,20 @@ function init(){
       const grid = winningArray[i]
       if (grid.every(q=>grids[q].classList.contains('red'))){
         currentPlayerDiv.innerHTML = 'The Winner is Player 1 (Red)'
-        currentPlayerDiv.style.backgroundColor = '#e63946'
-        currentPlayerDiv.style.color = 'white'
+        currentPlayerDiv.style.backgroundColor = 'white'
+        currentPlayerDiv.style.color = '#e63946'
+        currentPlayerDiv.style.width = '210px'
+        body.style.backgroundColor = '#e63946'
+        currentPlayerDiv.style.border = '2px solid black'
 
           
       } else if (grid.every(q=>grids[q].classList.contains('yellow'))){
         currentPlayerDiv.innerHTML = 'The Winner is Player 2 (Yellow)'
-        currentPlayerDiv.style.backgroundColor = '#f9c74f'
-        currentPlayerDiv.style.color = 'white'
+        currentPlayerDiv.style.backgroundColor = 'white'
+        currentPlayerDiv.style.color = '#f9c74f'
         currentPlayerDiv.style.width = '210px'
+        body.style.backgroundColor = '#f9c74f'
+        currentPlayerDiv.style.border = '2px solid black'
           
       }
     }
