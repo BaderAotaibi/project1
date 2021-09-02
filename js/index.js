@@ -3,6 +3,7 @@ function init(){
   const player = document.querySelector('.player')
   const currentPlayerDiv  = document.querySelector('.currentPlayer')
   const body = document.querySelector('body')
+  const restart = document.querySelector('#restart')
   const col = 6
   const row = 7
   const gridCount = col * row
@@ -60,6 +61,7 @@ function init(){
       player.innerHTML = currentPlayer
       grids[bottom].classList.add('red', 'taken')
       player.style.backgroundColor = '#f9c74f'
+      currentPlayerDiv.style.border = '2px solid #f9c74f'
       checkWinning() 
       
     } else if (currentPlayer === 2){
@@ -70,6 +72,7 @@ function init(){
       player.innerHTML = currentPlayer
       grids[bottom].classList.add('yellow', 'taken')
       player.style.backgroundColor = '#e63946'
+      currentPlayerDiv.style.border = '2px solid #e63946'
       checkWinning()  
     }
   }
@@ -82,23 +85,34 @@ function init(){
       if (grid.every(q=>grids[q].classList.contains('red'))){
         currentPlayerDiv.innerHTML = 'The Winner is Player 1 (Red)'
         currentPlayerDiv.style.backgroundColor = 'white'
-        currentPlayerDiv.style.color = '#e63946'
         currentPlayerDiv.style.width = '210px'
         body.style.backgroundColor = '#e63946'
-        currentPlayerDiv.style.border = '2px solid black'
+        currentPlayerDiv.style.border = 'none'
+        restart.style.display = 'inline-block'
 
           
       } else if (grid.every(q=>grids[q].classList.contains('yellow'))){
         currentPlayerDiv.innerHTML = 'The Winner is Player 2 (Yellow)'
         currentPlayerDiv.style.backgroundColor = 'white'
-        currentPlayerDiv.style.color = '#f9c74f'
         currentPlayerDiv.style.width = '210px'
         body.style.backgroundColor = '#f9c74f'
-        currentPlayerDiv.style.border = '2px solid black'
+        currentPlayerDiv.style.border = 'none'
+        restart.style.display = 'inline-block'
           
       }
     }
   }
+  function restartHandle(){
+    const divs = document.querySelectorAll('.grid div')
+    divs.forEach(div=> div.classList.remove('red', 'yellow','taked'))
+    currentPlayerDiv.innerHTML = `<p> The current player is </p> <span class="player">${currentPlayer}</span>`
+    currentPlayerDiv.style.backgroundColor = 'white'
+    currentPlayerDiv.style.width = '210px'
+    body.style.backgroundColor = '#f3f3f3'
+    restart.style.display = 'none'
+    
+  }
+  restart.addEventListener('click', restartHandle)
 
 }
 window.addEventListener('DOMContentLoaded', init)
